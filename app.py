@@ -5,6 +5,7 @@ from trame.widgets import html
 from pyvista.trame.ui import plotter_ui
 import pyvista as pv
 
+os.environ["VTK_DEFAULT_RENDER_WINDOW"] = "osmesa"
 pv.OFF_SCREEN = True
 
 server = get_server()
@@ -12,7 +13,7 @@ state, ctrl = server.state, server.controller
 
 # Example PyVista scene
 mesh = pv.Sphere(radius=2)
-plotter = pv.Plotter()
+plotter = pv.Plotter(off_screen=True)
 plotter.add_mesh(mesh, color="steelblue")
 
 with SinglePageLayout(server) as layout:
